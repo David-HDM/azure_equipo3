@@ -14,7 +14,7 @@
 | `base_datos.js` | Alexia |
 | `sql/crear_tabla.sql` | Alexia |
 | `servidor.js` | David |
-| `package.json`, `LEEME.md` | David |
+| `package.json`, `README.md` | David |
 | `publico/index.html` | Alejandra |
 | `publico/estilos.css` | Alejandra |
 | `publico/programa.js` | Alejandra |

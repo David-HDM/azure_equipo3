@@ -9,16 +9,28 @@ app.use(express.static("publico"));   // entrega index.html, estilos.css y progr
 
 // ===== Aquí empieza el código de David =====
 
-// Rutas que debe tener (todas responden y reciben JSON):
-//   GET    /alumnos        -> consulta todos
-//   POST   /alumnos        -> crea (recibe nombre y calificacion en req.body)
-//   PUT    /alumnos/:id    -> modifica (id en req.params.id, datos en req.body)
-//   DELETE /alumnos/:id    -> elimina (id en req.params.id)
-//
-// Ejemplo de la primera ruta:
-// app.get("/alumnos", async (req, res) => {
-//   res.json(await consultar());
-// });
+app.get("/alumnos", async (req, res) => {
+   res.json(await consultar());
+});
+
+app.post("/alumnos", async (req, res) => {
+   const { nombre, calificacion } = req.body;
+   const nuevoAlumno = await crear(nombre, calificacion);
+   res.json(nuevoAlumno);
+});
+
+app.put("/alumnos/:id", async (req, res) => {
+   const { id } = req.params;
+   const { nombre, calificacion } = req.body;
+   const alumnoActualizado = await actualizar(id, nombre, calificacion);
+   res.json(alumnoActualizado);
+});
+
+app.delete("/alumnos/:id", async (req, res) => {
+   const { id } = req.params;
+   const alumnoEliminado = await eliminar(id);
+   res.json(alumnoEliminado);
+});
 
 // ===== Aquí termina el código de David =====
 
