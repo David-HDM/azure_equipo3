@@ -5,42 +5,71 @@ const sql = require("mssql");
 
 // ===== Aquí empieza el codigo de Alexia =====
 
-// Datos de conexión a Azure SQL (no subir la contraseña real al repositorio)
+// Datos de conexión a Azure SQL
 const configuracion = {
-  user: "",
-  password: "",
-  server: "",      // ejemplo: miservidor.database.windows.net
-  database: "",
-  options: { encrypt: true }
+  user: "admin_equipo3",
+  password: "Azure2026!",
+  server: "admin-equipo-3.database.windows.net",
+  database: "base-equipo3",
+  options: { 
+    encrypt: true, 
+    trustServerCertificate: false // Recomendado para Azure
+  }
 };
 
-// PROVISIONAL: datos falsos para que el equipo pueda trabajar mientras tanto.
-// Reemplazar cada función por consultas reales a Azure SQL.
-let alumnosFalsos = [{ id: 1, nombre: "Ana", calificacion: 9.5 }];
-let siguienteId = 2;
-
+// FUNCIÓN: Consultar todos los alumnos (SELECT)
 async function consultar() {
-  // Ejemplo real:
-  // const pool = await sql.connect(configuracion);
-  // const resultado = await pool.request().query("SELECT * FROM alumnos");
-  // return resultado.recordset;
-  return alumnosFalsos;
-}
-
-async function crear(nombre, calificacion) {
-  alumnosFalsos.push({ id: siguienteId++, nombre, calificacion });
-}
-
-async function actualizar(id, nombre, calificacion) {
-  const alumno = alumnosFalsos.find(a => a.id == id);
-  if (alumno) {
-    alumno.nombre = nombre;
-    alumno.calificacion = calificacion;
+  try {
+    const pool = await sql.connect(configuracion);
+    const resultado = await pool.request().query("SELECT * FROM alumnos");
+    return resultado.recordset;
+  } catch (error) {
+    console.error("Error al consultar:", error);
+    throw error;
   }
 }
 
+// FUNCIÓN: Crear un nuevo alumno (INSERT)
+async function crear(nombre, calificacion) {
+  try {
+    const pool = await sql.connect(configuracion);
+    // Usamos parámetros para evitar inyección SQL y problemas de formato
+    await pool.request()
+      .input("nombre", sql.NVarChar, nombre)
+      .input("calificacion", sql.Float, calificacion)
+      .query("INSERT INTO alumnos (nombre, calificacion) VALUES (@nombre, @calificacion)");
+  } catch (error) {
+    console.error("Error al crear:", error);
+    throw error;
+  }
+}
+
+// FUNCIÓN: Actualizar un alumno existente (UPDATE)
+async function actualizar(id, nombre, calificacion) {
+  try {
+    const pool = await sql.connect(configuracion);
+    await pool.request()
+      .input("id", sql.Int, id)
+      .input("nombre", sql.NVarChar, nombre)
+      .input("calificacion", sql.Float, calificacion)
+      .query("UPDATE alumnos SET nombre = @nombre, calificacion = @calificacion WHERE id = @id");
+  } catch (error) {
+    console.error("Error al actualizar:", error);
+    throw error;
+  }
+}
+
+// FUNCIÓN: Eliminar un alumno (DELETE)
 async function eliminar(id) {
-  alumnosFalsos = alumnosFalsos.filter(a => a.id != id);
+  try {
+    const pool = await sql.connect(configuracion);
+    await pool.request()
+      .input("id", sql.Int, id)
+      .query("DELETE FROM alumnos WHERE id = @id");
+  } catch (error) {
+    console.error("Error al eliminar:", error);
+    throw error;
+  }
 }
 
 // ===== Aquí termina el código de Alexia =====
