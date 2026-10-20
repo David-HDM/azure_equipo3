@@ -1,3 +1,212 @@
-/* ARCHIVO DE: Alejandra (frontend) */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap");
 
-/* Colores, tipografía y diseño del formulario y la tabla */
+/* ===== Variables de color ===== */
+:root {
+  --acento: #0f9d9a;
+  --acento-oscuro: #0b6b83;
+  --fondo-pagina: #f1f5f8;
+  --panel: #eef7fa;
+  --texto: #2d3748;
+  --texto-suave: #6b7686;
+  --linea: #e5e9ef;
+  --editar: #0b6b83;
+  --eliminar: #d64545;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", "Segoe UI", Arial, sans-serif;
+  background: var(--fondo-pagina);
+  color: var(--texto);
+  margin: 0;
+  padding: 48px 16px;
+}
+
+/* ===== Tarjeta central ===== */
+.contenedor {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(15, 60, 80, 0.08);
+}
+
+h1 {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 0 0 28px;
+  background: linear-gradient(90deg, var(--acento), var(--acento-oscuro));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--acento-oscuro); /* respaldo si el navegador no soporta el degradado */
+}
+
+/* ===== Formulario ===== */
+form {
+  background: var(--panel);
+  border-left: 4px solid var(--acento-oscuro);
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-nombre {
+  flex: 1;              /* el nombre ocupa el espacio sobrante */
+}
+
+.campo-calificacion {
+  width: 110px;         /* calificación pequeña */
+}
+
+#calificacion {
+  max-width: 110px;
+}
+
+label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--texto-suave);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #cfd8e3;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.95rem;
+  color: var(--texto);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--acento);
+  box-shadow: 0 0 0 3px rgba(15, 157, 154, 0.2);
+}
+
+/* ===== Botones ===== */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+button[type="submit"] {
+  background: var(--acento-oscuro);
+  color: #fff;
+  padding: 11px 26px;
+}
+
+button[type="submit"]:hover {
+  background: #095468;
+}
+
+/* ===== Tabla ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--linea);
+}
+
+td {
+  padding: 14px 12px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--linea);
+}
+
+/* Nombre en turquesa y negrita */
+td:first-child {
+  color: var(--acento);
+  font-weight: 600;
+}
+
+/* Mensaje de error / tabla vacía centrado */
+td[colspan] {
+  text-align: center;
+  color: var(--texto-suave);
+  font-weight: 400;
+}
+
+tbody tr:hover {
+  background: #f7fbfc;
+}
+
+/* ===== Editar / Eliminar ===== */
+td:last-child {
+  white-space: nowrap;
+}
+
+td button {
+  background: transparent;
+  padding: 6px 12px;
+  border: 1px solid currentColor;
+}
+
+td button:first-child {
+  color: var(--editar);
+  margin-right: 6px;
+}
+
+td button:first-child:hover {
+  background: var(--editar);
+  color: #fff;
+}
+
+td button:last-child {
+  color: var(--eliminar);
+}
+
+td button:last-child:hover {
+  background: var(--eliminar);
+  color: #fff;
+}
+
+/* ===== Celular ===== */
+@media (max-width: 560px) {
+  .contenedor {
+    padding: 20px 14px;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .campo-calificacion {
+    width: 100%;
+  }
+
+  th,
+  td {
+    padding: 10px 6px;
+  }
+}
