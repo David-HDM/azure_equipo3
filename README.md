@@ -5,7 +5,7 @@
 
 1. `npm install`
 2. `node servidor.js`
-3. Abrir http://localhost:3000
+3. Abrir <http://localhost:3000>
 
 ## Reparto
 
