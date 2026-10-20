@@ -3,10 +3,12 @@
 // ===== NO MODIFICAR: dirección base del servidor =====
 const API = "/alumnos";
 
+// ===== Aquí empieza el código de Alejandra =====
+
 // Funciones sugeridas: cargar(), guardar(), editar(id), eliminar(id)
 //
 // Ejemplos de cómo llamar al servidor:
-//   const alumnos = await (await fetch(API)).json();                 // listar
+//   const alumnos = await (await fetch(API)).json();                 // consultar todos
 //   await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" },
 //     body: JSON.stringify({ nombre, calificacion }) });             // crear
 //   await fetch(API + "/" + id, { method: "PUT", headers: { "Content-Type": "application/json" },

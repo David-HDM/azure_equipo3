@@ -8,5 +8,4 @@ CREATE TABLE alumnos (
     calificacion DECIMAL(5,2) NOT NULL
 );
 
--- Opcional: datos de prueba
--- INSERT INTO alumnos (nombre, calificacion) VALUES ('Ana', 9.5);
+INSERT INTO alumnos (nombre, calificacion) VALUES ('Ana', 9.5);

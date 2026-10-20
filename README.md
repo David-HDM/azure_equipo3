@@ -2,13 +2,15 @@
 # Proyecto Azure: CRUD de alumnos
 
 ## Ejecución
+
 1. `npm install`
 2. `node servidor.js`
 3. Abrir http://localhost:3000
 
 ## Reparto
+
 | Archivo | Responsable |
-|---|---|
+| --- | --- |
 | `base_datos.js` | Alexia |
 | `sql/crear_tabla.sql` | Alexia |
 | `servidor.js` | David |
