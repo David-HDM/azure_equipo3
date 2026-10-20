@@ -11,6 +11,7 @@ const configuracion = {
   password: "Azure2026!",
   server: "admin-equipo-3.database.windows.net",
   database: "base-equipo3",
+  connectionTimeout: 60000,
   options: { 
     encrypt: true, 
     trustServerCertificate: false // Recomendado para Azure
